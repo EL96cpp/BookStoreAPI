@@ -1,0 +1,50 @@
+[
+    {"model": "books.book", "pk": 0, "fields": 
+    {"title": "Python Crash Course", "author": "Eric Matthes", "price": 1200.00, "discount": 0}},
+    {"model": "books.book", "pk": 1, "fields": 
+    {"title": "Head-First Python, 2nd edition", "author": "Paul Barry", "price": 890.00, "discount": 0}},
+    {"model": "books.book", "pk": 2, "fields": 
+    {"title": "Invent Your Own Computer Games with Python, 4th edition", "author": "Al Sweigart", "price": 1420.20, "discount": 5}},
+    {"model": "books.book", "pk": 3, "fields": 
+    {"title": "Think Python: How to Think Like a Computer Scientist, 2nd edition", "author": "Allen B. Downey", "price": 2120.00, "discount": 15}},
+    {"model": "books.book", "pk": 4, "fields": 
+    {"title": "Effective Computation in Physics: Field Guide to Research with Python", "author": "Anthony Scopatz, Kathryn D. Huff", "price": 2430.00, "discount": 0}},
+    {"model": "books.book", "pk": 5, "fields": 
+    {"title": "Learn Python 3 the Hard Way", "author": "Zed A. Shaw", "price": 1320.00, "discount": 0}},
+    {"model": "books.book", "pk": 6, "fields": 
+    {"title": "The C++ Programming Language (4th Edition)", "author": "Bjarne Stroustrup", "price": 2100.00, "discount": 5}},
+    {"model": "books.book", "pk": 7, "fields": 
+    {"title": "C++ Primer 5th Edition", "author": "Stanley B. Lippman", "price": 980.00, "discount": 0}},
+    {"model": "books.book", "pk": 8, "fields": 
+    {"title": "C++ All-in-One For Dummies 3rd Edition", "author": "John Paul Mueller", "price": 980.90, "discount": 10}},
+    {"model": "books.book", "pk": 9, "fields": 
+    {"title": "A Tour of C++ (C++ In-Depth Series)", "author": "Bjarne Stroustrup", "price": 3010.90, "discount": 5}},
+    {"model": "books.book", "pk": 10, "fields": 
+    {"title": "C++ Pocket Reference", "author": "Kyle Loudon", "price": 890.00, "discount": 0}},
+    {"model": "books.book", "pk": 11, "fields": 
+    {"title": "A Complete Guide to Programming in C++", "author": "Ulla Kirch-Prinz", "price": 1780.00, "discount": 0}},
+    {"model": "books.book", "pk": 12, "fields": 
+    {"title": "Beginning C++ Through Game Programming", "author": "Michael Dawson", "price": 1670.00, "discount": 0}},
+    {"model": "books.book", "pk": 13, "fields": 
+    {"title": "More Exceptional C++", "author": "Herb Shutter", "price": 2100.00, "discount": 0}},
+    {"model": "books.book", "pk": 14, "fields": 
+    {"title": "Exceptional C++", "author": "Herb Shutter", "price": 999.90, "discount": 0}},
+    {"model": "books.book", "pk": 15, "fields": 
+    {"title": "Head First Java, Learning Java", "author": "Cathy Sierra, Bert Bates", "price": 1250.00, "discount": 0}},
+    {"model": "books.book", "pk": 16, "fields": 
+    {"title": "Java. Beginner's Guide", "author": "Herbert Schildt", "price": 1780.00, "discount": 0}},
+    {"model": "books.book", "pk": 17, "fields": 
+    {"title": "Java for Dummies", "author": "Barry Bird", "price": 1100.00, "discount": 15}},
+    {"model": "books.book", "pk": 18, "fields": 
+    {"title": "Java. The Complete Guide", "author": "Herbert Schildt", "price": 1020.00, "discount": 0}},
+    {"model": "books.book", "pk": 19, "fields": 
+    {"title": "Java. Professional's Library", "author": "Kay S. Horstmann, Gary Cornell", "price": 1780.00, "discount": 0}},
+    {"model": "books.book", "pk": 20, "fields": 
+    {"title": "Java. Programming methods", "author": "Blinov, Romanchik", "price": 2010.00, "discount": 0}},
+    {"model": "books.book", "pk": 21, "fields": 
+    {"title": "Java Developer's Handbook", "author": "Benjamin J. Evans, David Flanagan", "price": 1650.00, "discount": 0}},
+    {"model": "books.book", "pk": 22, "fields": 
+    {"title": "Java SE 9. Basic course", "author": "Kay Horstmann", "price": 1090.00, "discount": 0}},
+    {"model": "books.book", "pk": 23, "fields": 
+    {"title": "Effective Java", "author": "Joshua Bloch", "price": 2110.00, "discount": 5}}
+]
