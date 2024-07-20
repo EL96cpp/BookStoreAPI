@@ -1,0 +1,10 @@
+[
+    {"model": "stores.store", "pk": 0, "fields": {"city": "Moscow", "address": "Example 1 st., 10"}},
+    {"model": "stores.store", "pk": 1, "fields": {"city": "Moscow", "address": "Example 2 st., 4"}},
+    {"model": "stores.store", "pk": 2, "fields": {"city": "Moscow", "address": "Example 3 st., 16"}},
+    {"model": "stores.store", "pk": 3, "fields": {"city": "Moscow", "address": "Example 4 st., 14"}},
+    {"model": "stores.store", "pk": 4, "fields": {"city": "Moscow", "address": "Example 5 st., 5"}},
+    {"model": "stores.store", "pk": 5, "fields": {"city": "Saint Petersburg", "address": "Example 1 st., 11"}},
+    {"model": "stores.store", "pk": 6, "fields": {"city": "Saint Petersburg", "address": "Example 2 st., 25"}},
+    {"model": "stores.store", "pk": 7, "fields": {"city": "Saint Petersburg", "address": "Example 3 st., 51"}}
+]
