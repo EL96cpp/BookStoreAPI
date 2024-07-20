@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     'django_filters',
 
     'books.apps.BooksConfig',
-    'stores.apps.StoresConfig'
+    'stores.apps.StoresConfig',
+    'reviews.apps.ReviewsConfig',
+    'orders.apps.OrdersConfig'
 ]
 
 MIDDLEWARE = [
