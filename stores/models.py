@@ -7,3 +7,4 @@ class Store(models.Model):
     class Meta:
         verbose_name = "Магазин"
         verbose_name_plural = "Магазины"
+        unique_together = ('city', 'address',)
