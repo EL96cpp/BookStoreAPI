@@ -11,3 +11,6 @@ class Book(models.Model):
     class Meta:
         verbose_name = "Книга"
         verbose_name_plural = "Книги"
+
+    def sell_price(self):
+        return round(self.price - (self.price*self.discount)/100, 2)
