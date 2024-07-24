@@ -11,3 +11,4 @@ class StoreViewSet(ModelViewSet):
     filter_backends = [SearchFilter, DjangoFilterBackend]
     search_fields = ['city', 'address']
     filterset_fields = ['city',]
+

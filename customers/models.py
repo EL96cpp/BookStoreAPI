@@ -10,7 +10,8 @@ class CustomerManager(BaseUserManager):
             raise ValueError("Username must be provided!")
         customer = self.model(username=username, first_name=first_name, last_name=last_name)
         customer.set_password(password)
-        customer.save(using=self._db)
+        customer.save()
+        print("Created new user", username, first_name, last_name, password)
         return customer
 
     def create_superuser(self, username, first_name, last_name, password):
@@ -18,7 +19,7 @@ class CustomerManager(BaseUserManager):
         customer.is_admin = True 
         customer.is_staff = True
         customer.is_superuser = True
-        customer.save(using=self._db)
+        customer.save()
         return customer
 
 

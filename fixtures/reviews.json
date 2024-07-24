@@ -1,0 +1,24 @@
+[
+    {"model": "reviews.review", "pk": 0, "fields": 
+    {"book": 1, "customer": 4, "rating": 5, "review": "Amazing book!"}},
+    {"model": "reviews.review", "pk": 1, "fields": 
+    {"book": 2, "customer": 4, "rating": 1, "review": "Awful book!"}},
+    {"model": "reviews.review", "pk": 2, "fields": 
+    {"book": 3, "customer": 4, "rating": 3, "review": "I wouldn't recomend this book"}},
+    {"model": "reviews.review", "pk": 3, "fields": 
+    {"book": 4, "customer": 4, "rating": 5, "review": "Amazing book!"}},
+    {"model": "reviews.review", "pk": 4, "fields": 
+    {"book": 5, "customer": 4, "rating": 4, "review": "Good book!"}},
+
+    {"model": "reviews.review", "pk": 0, "fields": 
+    {"book": 1, "customer": 5, "rating": 5, "review": "Amazing book!"}},
+    {"model": "reviews.review", "pk": 1, "fields": 
+    {"book": 2, "customer": 5, "rating": 1, "review": "Awful book!"}},
+    {"model": "reviews.review", "pk": 2, "fields": 
+    {"book": 3, "customer": 5, "rating": 3, "review": "I wouldn't recomend this book"}},
+    {"model": "reviews.review", "pk": 3, "fields": 
+    {"book": 4, "customer": 5, "rating": 5, "review": "Amazing book!"}},
+    {"model": "reviews.review", "pk": 4, "fields": 
+    {"book": 5, "customer": 5, "rating": 4, "review": "Good book!"}}
+
+]
