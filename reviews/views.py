@@ -9,6 +9,8 @@ from books.models import Book
 
 class BookReviewsListView(generics.ListAPIView):
     serializer_class = ReviewSerializer
+    pagination_class = BookReviewsPaginator
+
     def get_queryset(self):
         book_id = self.kwargs['book_id']
         return Review.objects.filter(book_id=book_id)
