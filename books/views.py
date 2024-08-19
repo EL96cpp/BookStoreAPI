@@ -1,4 +1,5 @@
 from rest_framework import viewsets, generics
+from rest_framework.permissions import AllowAny
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
 from .models import Book
@@ -12,6 +13,7 @@ class BookListViewSet(viewsets.ModelViewSet):
     search_fields = ['title', 'author']
     filterset_fields = ['price', 'discount']
     ordering_fields = ['title', 'price', 'discount']
+    permission_classes = (AllowAny,)
 
 
 class BookDetailView(generics.RetrieveAPIView):

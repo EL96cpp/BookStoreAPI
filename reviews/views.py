@@ -18,6 +18,22 @@ class BookReviewsListView(generics.ListAPIView):
 
 class BookCreateReviewView(generics.CreateAPIView):
     serializer_class = ReviewSerializer
+    permission_classes = [permissions.IsAuthenticated, ]
+    queryset = Review.objects.all()
+    
+    def create(self, request, *args, **kwargs):
+        print(request)
+        book = self.kwargs['book_id']
+        if Review.objects.filter(customer=self.request.user, book=book).exists():
+            print("Review already exists!")
+        else:
+            customer = self.request.user
+            rating = request.POST.get('rating')
+            review = request.POST.get('review')
+            print(book, customer, rating, review)
+            return super().create(book=book, customer=self.request.user, 
+                                  rating=rating, review=review)
+
 
 
 
