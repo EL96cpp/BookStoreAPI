@@ -3,17 +3,18 @@ from rest_framework.permissions import AllowAny
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
 from .models import Book
+from .paginators import BookListPaginator
 from .serializers import BookSerializer
 
 
-class BookListViewSet(viewsets.ModelViewSet):
+class BookListView(generics.ListAPIView):
     queryset = Book.objects.all()
+    pagination_class = BookListPaginator
     serializer_class = BookSerializer
     filter_backends = [SearchFilter, DjangoFilterBackend, OrderingFilter]
     search_fields = ['title', 'author']
     filterset_fields = ['price', 'discount']
     ordering_fields = ['title', 'price', 'discount']
-    permission_classes = (AllowAny,)
 
 
 class BookDetailView(generics.RetrieveAPIView):

@@ -36,8 +36,6 @@ class BookCreateReviewView(generics.CreateAPIView):
 
 
 
-
-
 class CustomerReviewsListView(generics.ListAPIView):
     serializer_class = ReviewSerializer
     permission_classes = [permissions.IsAuthenticated,]

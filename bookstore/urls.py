@@ -9,13 +9,14 @@ from .yasg import urlpatterns as doc_urls
 
 
 router = SimpleRouter()
-router.register(r"api/v1/books", BookListViewSet)
+# router.register(r"api/v1/books", BookListView)
 router.register(r"api/v1/stores", StoreViewSet)
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/book/<int:pk>', BookDetailView.as_view()),
+    path('api/v1/book-list', BookListView.as_view()),
     path('api/v1/add-review/<int:book_id>', BookCreateReviewView.as_view()),
     path('api/v1/book-reviews/<int:book_id>', BookReviewsListView.as_view()),
     path('api/v1/profile/reviews/', CustomerReviewsListView.as_view()),
