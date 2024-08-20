@@ -4,6 +4,7 @@ from rest_framework.routers import SimpleRouter
 from books.views import *
 from stores.views import StoreViewSet
 from reviews.views import *
+from carts.views import CartView
 from customers.views import CustomerLoginAPI, CreateUserView
 from .yasg import urlpatterns as doc_urls
 
@@ -11,6 +12,7 @@ from .yasg import urlpatterns as doc_urls
 router = SimpleRouter()
 # router.register(r"api/v1/books", BookListView)
 router.register(r"api/v1/stores", StoreViewSet)
+# router.register(r"api/v1/carts", CartView)
 
 
 urlpatterns = [
@@ -19,7 +21,8 @@ urlpatterns = [
     path('api/v1/book-list', BookListView.as_view()),
     path('api/v1/add-review/<int:book_id>', BookCreateReviewView.as_view()),
     path('api/v1/book-reviews/<int:book_id>', BookReviewsListView.as_view()),
-    path('api/v1/profile/reviews/', CustomerReviewsListView.as_view()),
+    path('api/v1/profile/reviews', CustomerReviewsListView.as_view()),
+    path('api/v1/carts', CartView.as_view()),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.authtoken'))
 ]
