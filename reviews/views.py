@@ -28,6 +28,9 @@ class BookCreateReviewView(generics.CreateAPIView):
     
     def create(self, request, *args, **kwargs):
         book_id = kwargs['book_id']
+        if Review.objects.filter(book_id=book_id, customer=self.request.user).exists():
+            return Response({"message": "You've already made reviewe on this book!"}, status=status.HTTP_403_FORBIDDEN)
+
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         instance = self.perform_create(serializer, book_id)
@@ -43,5 +46,4 @@ class CustomerReviewsListView(generics.ListAPIView):
 
     def get_queryset(self):
         user = self.request.user
-        print(user.username)
         return Review.objects.filter(customer=user)
