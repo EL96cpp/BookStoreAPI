@@ -1,7 +1,8 @@
-from rest_framework import generics
-from rest_framework import permissions
+from rest_framework import generics, views
+from rest_framework import permissions, status
+from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
-from .serializers import ReviewSerializer
+from .serializers import ReviewSerializer, ReviewCreateSerializer
 from .models import Review
 from .paginators import *
 from books.models import Book
@@ -17,23 +18,22 @@ class BookReviewsListView(generics.ListAPIView):
 
 
 class BookCreateReviewView(generics.CreateAPIView):
-    serializer_class = ReviewSerializer
+    serializer_class = ReviewCreateSerializer
     permission_classes = [permissions.IsAuthenticated, ]
     queryset = Review.objects.all()
     
+    def perform_create(self, serializer, book_id):
+        book = Book.objects.filter(id=book_id).last()
+        return serializer.save(customer=self.request.user, book=book)
+    
     def create(self, request, *args, **kwargs):
-        print(request)
-        book = self.kwargs['book_id']
-        if Review.objects.filter(customer=self.request.user, book=book).exists():
-            print("Review already exists!")
-        else:
-            customer = self.request.user
-            rating = request.POST.get('rating')
-            review = request.POST.get('review')
-            print(book, customer, rating, review)
-            return super().create(book=book, customer=self.request.user, 
-                                  rating=rating, review=review)
-
+        book_id = kwargs['book_id']
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        instance = self.perform_create(serializer, book_id)
+        headers = self.get_success_headers(serializer.data)
+        serializer = ReviewSerializer(instance=instance, many=False)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
 
 class CustomerReviewsListView(generics.ListAPIView):
