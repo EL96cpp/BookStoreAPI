@@ -36,3 +36,13 @@ class CartView(views.APIView,
         serializer.save()
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+    
+
+    def delete(self, request):
+        book_id = self.request.POST.get("book_id")
+        cart = Cart.objects.filter(customer=self.request.user, book_id=book_id)
+        if cart.exists():
+            cart.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        else:
+            return Response({"message": "Book was not found in your cart!"}, status=status.HTTP_400_BAD_REQUEST)
