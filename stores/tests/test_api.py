@@ -1,6 +1,7 @@
 from rest_framework.test import APITestCase
+from rest_framework import status
 from django.urls import reverse
-from .models import Store
+from stores.models import Store
 
 
 class StoresTests(APITestCase):
@@ -18,7 +19,7 @@ class StoresTests(APITestCase):
             {'id': 2, 'city': 'Omsk', 'address': 'Example st., 15'}
         ]
 
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data, expected_data)
 
     
@@ -28,12 +29,12 @@ class StoresTests(APITestCase):
         expected_filter_moscow_data = [
             {'id': 1, 'city': 'Moscow', 'address': 'Example st., 9'}, 
         ]
-        self.assertEqual(filter_moscow_response.status_code, 200)
+        self.assertEqual(filter_moscow_response.status_code, status.HTTP_200_OK)
         self.assertEqual(filter_moscow_response.data, expected_filter_moscow_data)
 
         filter_omsk_response = self.client.get(reverse("stores"), {"city": "Omsk"})
         expected_filter_omsk_data = [
             {'id': 2, 'city': 'Omsk', 'address': 'Example st., 15'},
         ]
-        self.assertEqual(filter_omsk_response.status_code, 200)
+        self.assertEqual(filter_omsk_response.status_code, status.HTTP_200_OK)
         self.assertEqual(filter_omsk_response.data, expected_filter_omsk_data)

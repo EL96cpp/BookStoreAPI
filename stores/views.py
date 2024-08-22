@@ -12,4 +12,7 @@ class StoreListView(ListAPIView):
     filter_backends = [SearchFilter, DjangoFilterBackend]
     search_fields = ['city', 'address']
     filterset_fields = ['city',]
+    
+    class Meta:
+        ordering = ['id']
 
