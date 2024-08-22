@@ -2,18 +2,16 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 from rest_framework.routers import SimpleRouter
 from books.views import *
-from stores.views import StoreViewSet
 from reviews.views import *
 from carts.views import CartView
 from orders.views import *
+from stores.views import StoreListView
 from customers.views import CustomerLoginAPI, CreateUserView
 from .yasg import urlpatterns as doc_urls
 
 
 router = SimpleRouter()
-# router.register(r"api/v1/books", BookListView)
-router.register(r"api/v1/stores", StoreViewSet)
-# router.register(r"api/v1/carts", CartView)
+# router.register(r"api/v1/stores", StoreViewSet)
 
 
 urlpatterns = [
@@ -27,6 +25,7 @@ urlpatterns = [
     path('api/v1/orders', OrderListView.as_view()),
     path('api/v1/order/<int:order_id>', OrderRetrieveView.as_view()),
     path('api/v1/order', OrderCreateView.as_view()),
+    path('api/v1/stores', StoreListView.as_view()),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.authtoken'))
 ]

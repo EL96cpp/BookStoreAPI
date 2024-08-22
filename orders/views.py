@@ -30,7 +30,6 @@ class OrderRetrieveView(views.APIView):
 
 class OrderCreateView(views.APIView):
     permission_classes = [permissions.IsAuthenticated,]
-    # queryset = Order.objects.all()
 
     def post(self, request):
         carts_query = Cart.objects.filter(customer=request.user)

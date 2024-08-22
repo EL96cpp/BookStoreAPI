@@ -1,11 +1,12 @@
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.generics import ListAPIView
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
 from .models import Store
 from .serializers import StoreSerializer
 
 
-class StoreViewSet(ModelViewSet):
+class StoreListView(ListAPIView):
     queryset = Store.objects.all()
     serializer_class = StoreSerializer
     filter_backends = [SearchFilter, DjangoFilterBackend]
