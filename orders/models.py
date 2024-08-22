@@ -32,7 +32,7 @@ class Order(models.Model):
         ordering = ("id",)
 
     def __str__(self):
-        return f"Заказ № {self.pk} | Покупатель {self.user.first_name} {self.user.last_name}"
+        return f"Заказ № {self.pk} | Покупатель {self.customer.first_name} {self.customer.last_name}"
     
 
 class OrderItem(models.Model):

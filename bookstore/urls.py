@@ -5,6 +5,7 @@ from books.views import *
 from stores.views import StoreViewSet
 from reviews.views import *
 from carts.views import CartView
+from orders.views import *
 from customers.views import CustomerLoginAPI, CreateUserView
 from .yasg import urlpatterns as doc_urls
 
@@ -23,6 +24,9 @@ urlpatterns = [
     path('api/v1/book-reviews/<int:book_id>', BookReviewsListView.as_view()),
     path('api/v1/profile/reviews', CustomerReviewsListView.as_view()),
     path('api/v1/carts', CartView.as_view()),
+    path('api/v1/orders', OrderListView.as_view()),
+    path('api/v1/order/<int:order_id>', OrderRetrieveView.as_view()),
+    path('api/v1/order', OrderCreateView.as_view()),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.authtoken'))
 ]

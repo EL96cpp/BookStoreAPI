@@ -14,6 +14,7 @@ class CartView(views.APIView,
     queryset = Cart.objects.all()
 
     def get(self, request):
+        print(request.query_params)
         carts = Cart.objects.filter(customer=request.user)
         return Response(CartSerializer(carts, many=True).data)
 
