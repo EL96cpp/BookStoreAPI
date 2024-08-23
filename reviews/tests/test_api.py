@@ -58,14 +58,10 @@ class ReviewsTestView(APITestCase):
         response_reviews2 = self.client.get("/api/v1/book-reviews/2")
         self.assertEqual(response_reviews1.status_code, status.HTTP_200_OK)
         self.assertEqual(response_reviews2.status_code, status.HTTP_200_OK)
-        self.assertEqual(response_reviews1.data["results"][0]["customer"], 1)
-        self.assertEqual(response_reviews2.data["results"][0]["customer"], 1)
-        self.assertEqual(response_reviews1.data["results"][0]["rating"], 5)
-        self.assertEqual(response_reviews2.data["results"][0]["rating"], 4)
-        self.assertEqual(response_reviews1.data["results"][0]["review"], "Great book!")
-        self.assertEqual(response_reviews2.data["results"][0]["review"], "Good book!")
-        self.assertEqual(response_reviews1.data["results"][0]["book"], 1)
-        self.assertEqual(response_reviews2.data["results"][0]["book"], 2)
+        self.assertEqual(response_reviews1.data["results"][0], 
+                         {'id': 1, 'rating': 5, 'review': 'Great book!', 'book': 1, 'customer': 1})
+        self.assertEqual(response_reviews2.data["results"][0], 
+                         {'id': 2, 'rating': 4, 'review': 'Good book!', 'book': 2, 'customer': 1})
 
         response_my_reviews = self.client.get(reverse("reviews"))
         self.assertEqual(len(response_my_reviews.data["results"]), 0)
@@ -77,3 +73,22 @@ class ReviewsTestView(APITestCase):
         response_book2 = self.client.post("/api/v1/add-review/1", {"review": "Good book!", "rating": 4})
         self.assertEqual(response_book1.status_code, status.HTTP_201_CREATED)
         self.assertEqual(response_book2.status_code, status.HTTP_403_FORBIDDEN)
+
+    
+    def test_user_reviews(self):
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token_customer1.key)
+        response_book1 = self.client.post("/api/v1/add-review/1", {"review": "Great book!", "rating": 5})
+        response_book2 = self.client.post("/api/v1/add-review/2", {"review": "Good book!", "rating": 4})
+        self.assertEqual(response_book1.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(response_book2.status_code, status.HTTP_201_CREATED)
+
+        response_my_reviews = self.client.get(reverse("reviews"))
+        self.assertEqual(len(response_my_reviews.data["results"]), 2)
+
+    
+    def test_rating_limits(self):
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token_customer1.key)
+        response_book1 = self.client.post("/api/v1/add-review/1", {"review": "Great book!", "rating": 7})
+        response_book2 = self.client.post("/api/v1/add-review/2", {"review": "Good book!", "rating": -1})
+        self.assertEqual(response_book1.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(response_book2.status_code, status.HTTP_400_BAD_REQUEST)
