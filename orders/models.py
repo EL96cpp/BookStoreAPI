@@ -25,6 +25,7 @@ class Order(models.Model):
     is_paid = models.BooleanField(default=False, verbose_name="Оплачено")
     status = models.CharField(max_length=50, default='В обработке', verbose_name="Статус заказа")
     total = models.IntegerField(default=0, verbose_name="Сумма заказа")
+    books_quantity = models.IntegerField(default=0, verbose_name="Количество книг")
 
     class Meta:
         verbose_name = "Заказ"

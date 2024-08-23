@@ -42,7 +42,8 @@ class OrderCreateView(views.APIView):
         order = Order(customer=request.user, 
                       store_id=store_id, 
                       payment_on_get=payment_on_get,
-                      total=carts_query.total_price())
+                      total=carts_query.total_price(),
+                      books_quantity=carts_query.total_quantity())
         order.save()
         order_items = []
         for cart in carts:
