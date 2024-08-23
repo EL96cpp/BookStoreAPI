@@ -14,7 +14,6 @@ class CartView(views.APIView,
     queryset = Cart.objects.all()
 
     def get(self, request):
-        print(request.query_params)
         carts = Cart.objects.filter(customer=request.user)
         return Response(CartSerializer(carts, many=True).data)
 
@@ -26,7 +25,9 @@ class CartView(views.APIView,
             cart = cart_query.last()
             cart.quantity += 1
             cart.save()
-            return Response(status=status.HTTP_200_OK)
+            serializer = CartSerializer(data=model_to_dict(cart))
+            serializer.is_valid(raise_exception=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
 
         data = request.data
         data._mutable = True
