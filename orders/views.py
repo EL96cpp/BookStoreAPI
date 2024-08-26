@@ -37,8 +37,8 @@ class OrderCreateView(views.APIView):
             return Response({"message": "Your cart is empty! Add books to your cart to make order!"}, 
                             status=status.HTTP_403_FORBIDDEN)
         carts = carts_query.all()
-        store_id = request.POST.get("store_id")
-        payment_on_get = request.POST.get("payment_on_get")
+        store_id = int(request.POST.get("store_id"))
+        payment_on_get = bool(request.POST.get("payment_on_get"))
         order = Order(customer=request.user, 
                       store_id=store_id, 
                       payment_on_get=payment_on_get,
