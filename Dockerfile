@@ -1,7 +1,8 @@
-FROM python:3.10.6-slim-buster
-
-COPY . .
-
-RUN pip3 install -r requirements.txt
-
-CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]
+FROM python:3.11
+ENV PYTHONUNBUFFERED=1
+WORKDIR /usr/src/bookstore
+COPY requirements.txt ./
+COPY fixtures/ ./
+COPY entrypoint.sh ./
+RUN pip install -r requirements.txt
+ENTRYPOINT ["sh", "/usr/src/bookstore/entrypoint.sh"]
