@@ -5,4 +5,3 @@ COPY requirements.txt ./
 COPY fixtures/ ./
 COPY entrypoint.sh ./
 RUN pip install -r requirements.txt
-ENTRYPOINT ["sh", "/usr/src/bookstore/entrypoint.sh"]

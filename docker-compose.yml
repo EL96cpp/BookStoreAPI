@@ -8,17 +8,25 @@ services:
       - .:/usr/src/bookstore/
     ports:
       - "8000:8000"
+    command: >
+      sh -c "python3 manage.py makemigrations
+             python3 manage.py migrate
+             python3 manage.py loaddata fixtures/books.json
+             python3 manage.py loaddata fixtures/stores.json
+             python3 manage.py loaddata fixtures/customers.json
+             python3 manage.py loaddata fixtures/reviews.json
+             python3 manage.py runserver 0.0.0.0:8000"
     environment:
       - DEBUG=1
       - DJANGO_ALLOWED_HOSTS=localhost, 127.0.0.1
-      - CELERY_BROKER=redis://redis:6379/0
-      - CELERY_BACKEND=redis://redis:6379/0
-      - DB_HOST=postgres
+      - CELERY_BROKER=redis://redis:6379/0/
+      - CELERY_BACKEND=redis://redis:6379/0/
+      - DB_HOST=pgdb
       - DB_NAME=bookstore
       - DB_USER=bookstore
       - DB_PASS=bookstore
     depends_on:
-      - postgres
+      - pgdb
       - redis
 
   celery:
@@ -26,18 +34,14 @@ services:
     command: celery -A bookstore worker -l INFO
     volumes:
       - .:/usr/src/bookstore
-    environment:
-      - DEBUG=1
-      - DJANGO_ALLOWED_HOSTS=localhost, 127.0.0.1
-      - CELERY_BROKER=redis://redis:6379/0
-      - CELERY_BACKEND=redis://redis:6379/0
     depends_on:
       - django
+      - pgdb
       - redis
   
-  postgres:
+  pgdb:
     image: postgres
-    container_name: postgres
+    container_name: pgdb
     environment:
       - POSTGRES_DB=bookstore
       - POSTGRES_USER=bookstore
