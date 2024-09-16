@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.views.decorators.cache import cache_page
+from django.utils.decorators import method_decorator
 from django.forms.models import model_to_dict
 from rest_framework.response import Response
 from rest_framework import views, generics, mixins, permissions, status
@@ -14,11 +15,17 @@ class OrderListView(generics.ListAPIView):
     
     def get_queryset(self):
         return Order.objects.filter(customer=self.request.user)
+    
+    @method_decorator(cache_page(60))
+    def get(self, *args, **kwargs):
+        return super().get(*args, **kwargs)    
+
 
 
 class OrderRetrieveView(views.APIView):
     permission_classes = [permissions.IsAuthenticated,]
 
+    @method_decorator(cache_page(60))
     def get(self, request, order_id):
         order = Order.objects.filter(id=order_id, customer=request.user)
         if not order.exists():

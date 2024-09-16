@@ -1,3 +1,5 @@
+from django.views.decorators.cache import cache_page
+from django.utils.decorators import method_decorator
 from rest_framework import generics, views
 from rest_framework import permissions, status
 from rest_framework.response import Response
@@ -15,6 +17,10 @@ class BookReviewsListView(generics.ListAPIView):
     def get_queryset(self):
         book_id = self.kwargs['book_id']
         return Review.objects.filter(book_id=book_id)
+    
+    @method_decorator(cache_page(60*30))
+    def get(self, *args, **kwargs):
+        return super().get(*args, **kwargs)    
 
 
 class BookCreateReviewView(generics.CreateAPIView):
@@ -47,3 +53,7 @@ class CustomerReviewsListView(generics.ListAPIView):
     def get_queryset(self):
         user = self.request.user
         return Review.objects.filter(customer=user)
+    
+    @method_decorator(cache_page(60))
+    def get(self, *args, **kwargs):
+        return super().get(*args, **kwargs)    

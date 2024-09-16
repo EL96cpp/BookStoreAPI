@@ -1,9 +1,7 @@
-from django.shortcuts import render
 from django.forms.models import model_to_dict
 from rest_framework.response import Response
 from rest_framework import views, mixins, permissions, status
 from .models import Cart
-from books.models import Book
 from .serializers import CartSerializer
 
 
