@@ -26,6 +26,7 @@ class Order(models.Model):
     status = models.CharField(max_length=50, default='В обработке', verbose_name="Статус заказа")
     total = models.IntegerField(default=0, verbose_name="Сумма заказа")
     books_quantity = models.IntegerField(default=0, verbose_name="Количество книг")
+    code = models.CharField(max_length=4, null=False, verbose_name="Код получения")
 
     class Meta:
         verbose_name = "Заказ"

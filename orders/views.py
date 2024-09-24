@@ -9,7 +9,7 @@ from books.models import Book
 from stores.models import Store
 from .serializers import OrderSerializer, OrderItemSerializer
 from .tasks import send_order_email
-
+from .code_generator import generate_code
 from django.conf import settings
 
 
@@ -50,11 +50,13 @@ class OrderCreateView(views.APIView):
         carts = carts_query.all()
         store_id = int(request.POST.get("store_id"))
         payment_on_get = bool(request.POST.get("payment_on_get"))
+        code = generate_code()
         order = Order(customer=request.user, 
                       store_id=store_id, 
                       payment_on_get=payment_on_get,
                       total=carts_query.total_price(),
-                      books_quantity=carts_query.total_quantity())
+                      books_quantity=carts_query.total_quantity(),
+                      code=code)
         order.save()
         order_items = []
         books = []
@@ -72,7 +74,7 @@ class OrderCreateView(views.APIView):
         carts.delete()
         order_items = OrderItem.objects.filter(order=order)
         store = Store.objects.filter(id=store_id).last()
-        send_order_email(settings.EMAIL_HOST_USER, request.user.email, store.city+", "+store.address, 
+        send_order_email(settings.EMAIL_HOST_USER, request.user.email, code, store.city+", "+store.address, 
                          books, carts_query.total_price())
         return Response({"order": model_to_dict(order), 
                          "order_items": OrderItemSerializer(order_items, many=True).data},
