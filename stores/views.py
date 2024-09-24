@@ -5,6 +5,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter
 from .models import Store
 from .serializers import StoreSerializer
+from django.http import JsonResponse
 
 
 class StoreListView(ListAPIView):

@@ -1,23 +1,23 @@
 [
+    {"model": "customers.Customer", "pk": 0, "fields": 
+    {"username": "username1", "email": "example1@mail.com", "first_name": "fn1", "last_name": "ln1", "password": "1234"}},
+    {"model": "customers.Customer", "pk": 1, "fields": 
+    {"username": "username2", "email": "example2@mail.com", "first_name": "fn2", "last_name": "ln2", "password": "1234"}},
+    {"model": "customers.Customer", "pk": 2, "fields": 
+    {"username": "username3", "email": "example3@mail.com", "first_name": "fn3", "last_name": "ln3", "password": "1234"}},
     {"model": "customers.Customer", "pk": 3, "fields": 
-    {"username": "username1", "first_name": "fn1", "last_name": "ln1", "password": "1234"}},
+    {"username": "username4", "email": "example4@mail.com", "first_name": "fn4", "last_name": "ln4", "password": "1234"}},
     {"model": "customers.Customer", "pk": 4, "fields": 
-    {"username": "username2", "first_name": "fn2", "last_name": "ln2", "password": "1234"}},
+    {"username": "username5", "email": "example5@mail.com", "first_name": "fn5", "last_name": "ln5", "password": "1234"}},
     {"model": "customers.Customer", "pk": 5, "fields": 
-    {"username": "username3", "first_name": "fn3", "last_name": "ln3", "password": "1234"}},
+    {"username": "username6", "email": "example6@mail.com", "first_name": "fn6", "last_name": "ln6", "password": "1234"}},
     {"model": "customers.Customer", "pk": 6, "fields": 
-    {"username": "username4", "first_name": "fn4", "last_name": "ln4", "password": "1234"}},
+    {"username": "username7", "email": "example7@mail.com", "first_name": "fn7", "last_name": "ln7", "password": "1234"}},
     {"model": "customers.Customer", "pk": 7, "fields": 
-    {"username": "username5", "first_name": "fn5", "last_name": "ln5", "password": "1234"}},
+    {"username": "username8", "email": "example8@mail.com", "first_name": "fn8", "last_name": "ln8", "password": "1234"}},
     {"model": "customers.Customer", "pk": 8, "fields": 
-    {"username": "username6", "first_name": "fn6", "last_name": "ln6", "password": "1234"}},
+    {"username": "username9", "email": "example9@mail.com", "first_name": "fn9", "last_name": "ln9", "password": "1234"}},
     {"model": "customers.Customer", "pk": 9, "fields": 
-    {"username": "username7", "first_name": "fn7", "last_name": "ln7", "password": "1234"}},
-    {"model": "customers.Customer", "pk": 10, "fields": 
-    {"username": "username8", "first_name": "fn8", "last_name": "ln8", "password": "1234"}},
-    {"model": "customers.Customer", "pk": 11, "fields": 
-    {"username": "username9", "first_name": "fn9", "last_name": "ln9", "password": "1234"}},
-    {"model": "customers.Customer", "pk": 12, "fields": 
-    {"username": "username10", "first_name": "fn10", "last_name": "ln10", "password": "1234"}}
+    {"username": "username10", "email": "example10@mail.com", "first_name": "fn10", "last_name": "ln10", "password": "1234"}}
 
 ]

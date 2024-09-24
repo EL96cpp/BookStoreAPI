@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 class="header">{{ title }}</h1>
+    <div class="store_address">Адрес магазина: {{ store_address }}</div>
+    <div class="order_title">Заказ:</div>
+    <ul class="books_list">
+        {% for book in books %}
+        <li class="book_element">
+            {{ book.title }} {{ book.author }}, {{ book.quantity }} шт.
+        </li>
+        {% endfor %}
+    </ul>
+    <div class="total_data">Итого: {{ total }} р.</div>
+</body>
+</html>

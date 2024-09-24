@@ -13,18 +13,18 @@ services:
              python3 manage.py migrate
              python3 manage.py loaddata fixtures/books.json
              python3 manage.py loaddata fixtures/stores.json
-             python3 manage.py loaddata fixtures/customers.json
-             python3 manage.py loaddata fixtures/reviews.json
              python3 manage.py runserver 0.0.0.0:8000"
     environment:
       - DEBUG=1
       - DJANGO_ALLOWED_HOSTS=localhost, 127.0.0.1
-      - CELERY_BROKER=redis://redis:6379/0/
-      - CELERY_BACKEND=redis://redis:6379/0/
+      - CELERY_BROKER=redis://redis:6379/0
+      - CELERY_BACKEND=redis://redis:6379/0
       - DB_HOST=pgdb
       - DB_NAME=bookstore
       - DB_USER=bookstore
       - DB_PASS=bookstore
+
+
     depends_on:
       - pgdb
       - redis
@@ -38,10 +38,12 @@ services:
       - django
       - pgdb
       - redis
+    environment:
+      - CELERY_BROKER=redis://redis:6379/0
+      - CELERY_BACKEND=redis://redis:6379/0
   
   pgdb:
     image: postgres
-    container_name: pgdb
     environment:
       - POSTGRES_DB=bookstore
       - POSTGRES_USER=bookstore

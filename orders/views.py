@@ -6,7 +6,11 @@ from rest_framework import views, generics, mixins, permissions, status
 from .models import Order, OrderItem
 from carts.models import Cart
 from books.models import Book
+from stores.models import Store
 from .serializers import OrderSerializer, OrderItemSerializer
+from .tasks import send_order_email
+
+from django.conf import settings
 
 
 class OrderListView(generics.ListAPIView):
@@ -53,14 +57,23 @@ class OrderCreateView(views.APIView):
                       books_quantity=carts_query.total_quantity())
         order.save()
         order_items = []
+        books = []
         for cart in carts:
+            book = dict()
+            book['title'] = cart.book.title
+            book['author'] = cart.book.author
+            book['price'] = cart.book.price
+            book['quantity'] = cart.quantity
+            books.append(book)
             order_item = OrderItem(order=order, book=cart.book, 
                                    price=cart.total_price(), quantity=cart.quantity)
             order_items.append(order_item)
             order_item.save()
         carts.delete()
         order_items = OrderItem.objects.filter(order=order)
-
+        store = Store.objects.filter(id=store_id).last()
+        send_order_email(settings.EMAIL_HOST_USER, request.user.email, store.city+", "+store.address, 
+                         books, carts_query.total_price())
         return Response({"order": model_to_dict(order), 
                          "order_items": OrderItemSerializer(order_items, many=True).data},
                         status=status.HTTP_201_CREATED)
