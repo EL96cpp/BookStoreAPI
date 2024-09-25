@@ -4,7 +4,7 @@ from rest_framework import generics, views
 from rest_framework import permissions, status
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
-from .serializers import ReviewSerializer, ReviewCreateSerializer
+from .serializers import ReviewSerializer, ReviewCreateSerializer, ReviewRetrieveUpdateSerializer
 from .models import Review
 from .paginators import *
 from books.models import Book
@@ -57,3 +57,12 @@ class CustomerReviewsListView(generics.ListAPIView):
     @method_decorator(cache_page(60))
     def get(self, *args, **kwargs):
         return super().get(*args, **kwargs)    
+
+
+class CustomerReviewView(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = ReviewRetrieveUpdateSerializer
+    permission_classes = [permissions.IsAuthenticated,]
+
+    def get_queryset(self):
+        return Review.objects.filter(customer=self.request.user)
+    
