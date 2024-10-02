@@ -1,15 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include, re_path
-from rest_framework.routers import SimpleRouter
-from books.views import *
-from reviews.views import *
-from carts.views import CartView
-from orders.views import *
-from stores.views import StoreListView
 from .yasg import urlpatterns as doc_urls
 
-
-router = SimpleRouter()
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,4 +15,4 @@ urlpatterns = [
 ]
 
 urlpatterns += doc_urls
-urlpatterns += router.urls
+

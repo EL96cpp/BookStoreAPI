@@ -5,18 +5,18 @@ from django.utils import timezone
 
 
 class CustomerManager(BaseUserManager):
-    def create_user(self, username, email, first_name, last_name, password):
+    def create_user(self, username, email, first_name, last_name, password, needs_adverticing):
         if not username:
             raise ValueError("Username must be provided!")
         if not email:
             raise ValueError("Email must be provided!")
-        customer = self.model(username=username, email=email, first_name=first_name, last_name=last_name)
+        customer = self.model(username=username, email=email, first_name=first_name, last_name=last_name, needs_adverticing=needs_adverticing)
         customer.set_password(password)
         customer.save()
         return customer
 
     def create_superuser(self, username, first_name, last_name, password):
-        customer = self.create_user(username, "example@gmail.com", first_name, last_name, password)
+        customer = self.create_user(username, "example@gmail.com", first_name, last_name, password, False)
         customer.is_admin = True 
         customer.is_staff = True
         customer.is_superuser = True
@@ -29,6 +29,7 @@ class Customer(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=255, unique=True, verbose_name="Почта")
     first_name = models.CharField(max_length=30, verbose_name="Имя")
     last_name = models.CharField(max_length=30, verbose_name="Фамилия")
+    needs_adverticing = models.BooleanField(default=False, verbose_name="Участие в рассылках")
 
     is_verified = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
@@ -42,7 +43,7 @@ class Customer(AbstractBaseUser, PermissionsMixin):
     objects = CustomerManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username', 'first_name', 'last_name']
+    REQUIRED_FIELDS = ['username', 'first_name', 'last_name', 'needs_adverticing']
 
 
     class Meta:
